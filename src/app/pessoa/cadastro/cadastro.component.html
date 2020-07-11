@@ -1,0 +1,93 @@
+<p>cadastro de pessoa</p>
+<div class="content">
+    <form [formGroup]="formGroup"   #form="ngForm" (ngSubmit)="formGroup.valid && onSubmit()" appValidarSenha>
+        <div class="form-group" >
+            <div formGroupName="pessoa">
+                <label>Nome Completo *</label>
+                <input type="text" formControlName="nomeCompleto" class="form-control"  />
+                <div *ngIf="hasError('nomeCompleto', 'required',['pessoa']) && form.submitted" class="alert alert-danger" role="alert">
+                    O nome completo do usuário não pode ser nulo!
+                  </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div formGroupName="pessoa">
+                <label>Celular *</label>
+                <input type="text" formControlName="celular" class="form-control"  />
+                <div *ngIf="hasError('celular', 'required',['pessoa']) && form.submitted" class="alert alert-danger" role="alert">
+                    O campo celular  não pode ser nulo!
+                  </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div formGroupName="pessoa">
+                <label>Data de Nascimento *</label>
+                <input type="date" formControlName="dataNascimento" class="form-control"  />
+                <div *ngIf="hasError('dataNascimento', 'required',['pessoa']) && form.submitted" class="alert alert-danger" role="alert">
+                    A data de nascimento nao pode ser nulo!
+                  </div>
+            </div>
+        </div>
+        <div class="form-group" >
+            <div class="custom-control custom-checkbox" formGroupName="pessoa" >
+            
+                <label *ngFor="let sex of sexos">
+                    <input type="radio" [value]="sex" formControlName="sexo" name="sexo" (change)="onChangeChecked($event)">
+                      <span>{{sex}}</span>
+                  </label>
+              </div>
+              <div *ngIf="hasError('sexo', 'required',['pessoa']) && form.submitted"  class="alert alert-danger" role="alert">
+                O campo sexo não pode ser nulo!
+              </div>
+            
+        </div>
+        <div class="form-group">
+            <div >
+                <label>Nome de usuario *</label>
+                <input type="text" formControlName="userName" class="form-control"  />
+                <!-- <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                    <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                </div> -->
+            </div>
+        </div>
+        <div class="form-group">
+            <div>
+                <label>Email *</label>
+                <input type="text" formControlName="email" class="form-control"  />
+                <div *ngIf="hasError('email', 'required',['']) && form.submitted"  class="alert alert-danger" role="alert">
+                    O email  não pode ser nulo!
+                  </div>
+            </div>
+        </div>
+
+            <div class="form-group">
+                <div>
+                    <label>Senha *</label>
+                    <input type="password" formControlName="password" class="form-control"  />
+                </div>
+                <div *ngIf="hasError('password', 'required',['']) && form.submitted" class="alert alert-danger" role="alert">
+                    o campo  senha não pode ser nulo!
+                </div>
+            </div>
+            <div class="form-group">
+                <div >
+                    <label>Confirmar senha*</label>
+                    <input type="password" formControlName="confirmPassword" class="form-control"  />
+                    <!-- <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                        <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                    </div> -->
+                </div>
+                <div *ngIf="hasError('confirmPassword', 'required',['']) && form.submitted"  class="alert alert-danger" role="alert">
+                    A confirmação de senha   não pode ser nulo!
+                </div>
+                <div *ngIf="formGroup.controls.confirmPassword.errors && form.submitted"  class="alert alert-danger" role="alert">
+                    Sua senha nao confere, por favor confirme a senha correta!
+                </div>
+                
+            </div>
+        <div class="form-group">
+            <button class="btn btn-primary" >Cadastre-se</button>
+        </div>
+    
+    </form>
+</div>
