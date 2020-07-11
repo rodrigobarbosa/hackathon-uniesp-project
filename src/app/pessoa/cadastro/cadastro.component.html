@@ -6,7 +6,7 @@
                 <label>Nome Completo *</label>
                 <input type="text" formControlName="nomeCompleto" class="form-control"  />
                 <div *ngIf="hasError('nomeCompleto', 'required',['pessoa']) && form.submitted" class="alert alert-danger" role="alert">
-                    O nome completo do usuário não pode ser nulo!
+                    O nome completo do usuário não pode ser vazio!
                   </div>
             </div>
         </div>
@@ -15,7 +15,7 @@
                 <label>Celular *</label>
                 <input type="text" formControlName="celular" class="form-control"  />
                 <div *ngIf="hasError('celular', 'required',['pessoa']) && form.submitted" class="alert alert-danger" role="alert">
-                    O campo celular  não pode ser nulo!
+                    O campo celular  não pode ser vazio!
                   </div>
             </div>
         </div>
@@ -24,7 +24,7 @@
                 <label>Data de Nascimento *</label>
                 <input type="date" formControlName="dataNascimento" class="form-control"  />
                 <div *ngIf="hasError('dataNascimento', 'required',['pessoa']) && form.submitted" class="alert alert-danger" role="alert">
-                    A data de nascimento nao pode ser nulo!
+                    A data de nascimento nao pode ser vazio!
                   </div>
             </div>
         </div>
@@ -37,7 +37,7 @@
                   </label>
               </div>
               <div *ngIf="hasError('sexo', 'required',['pessoa']) && form.submitted"  class="alert alert-danger" role="alert">
-                O campo sexo não pode ser nulo!
+                O campo sexo não pode ser vazio!
               </div>
             
         </div>
@@ -45,9 +45,9 @@
             <div >
                 <label>Nome de usuario *</label>
                 <input type="text" formControlName="userName" class="form-control"  />
-                <!-- <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-                    <div *ngIf="f.firstName.errors.required">First Name is required</div>
-                </div> -->
+                <div *ngIf="hasError('userName', 'required',['']) && form.submitted"  class="alert alert-danger" role="alert">
+                    O nome do usuário não pode ser vazio!
+                  </div>
             </div>
         </div>
         <div class="form-group">
@@ -55,7 +55,7 @@
                 <label>Email *</label>
                 <input type="text" formControlName="email" class="form-control"  />
                 <div *ngIf="hasError('email', 'required',['']) && form.submitted"  class="alert alert-danger" role="alert">
-                    O email  não pode ser nulo!
+                    O email  não pode ser vazio!
                   </div>
             </div>
         </div>
@@ -66,7 +66,7 @@
                     <input type="password" formControlName="password" class="form-control"  />
                 </div>
                 <div *ngIf="hasError('password', 'required',['']) && form.submitted" class="alert alert-danger" role="alert">
-                    o campo  senha não pode ser nulo!
+                    o campo  senha não pode ser vazio!
                 </div>
             </div>
             <div class="form-group">
@@ -78,7 +78,7 @@
                     </div> -->
                 </div>
                 <div *ngIf="hasError('confirmPassword', 'required',['']) && form.submitted"  class="alert alert-danger" role="alert">
-                    A confirmação de senha   não pode ser nulo!
+                    A confirmação de senha não pode ser vazio!
                 </div>
                 <div *ngIf="formGroup.controls.confirmPassword.errors && form.submitted"  class="alert alert-danger" role="alert">
                     Sua senha nao confere, por favor confirme a senha correta!
