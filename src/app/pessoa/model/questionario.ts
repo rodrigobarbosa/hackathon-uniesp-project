@@ -11,7 +11,7 @@ export class  Questionario {
 
   static getControl(): FormGroup {
     return new FormGroup({
-      id: new FormControl(),
+      id: new FormControl(''),
       sintomas: new FormControl(''),
       periodoSintoma: new FormControl(''),
     });

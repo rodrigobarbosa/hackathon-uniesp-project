@@ -14,6 +14,10 @@ import { CommonModule } from '@angular/common';
 import { ValidarSenhaDirective } from './util/validation/validar-senha.directive';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators'; // <-- #2 import module
 import { RxFormBuilder } from "@rxweb/reactive-form-validators";
+import { ModalModule , BsModalRef} from 'ngx-bootstrap/modal';
+import { UsuarioService } from './pessoa/servico/usuario.service';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 
@@ -29,16 +33,17 @@ import { RxFormBuilder } from "@rxweb/reactive-form-validators";
     ValidarSenhaDirective
   ],
   imports: [
-    BrowserModule,
+  BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    
+    ModalModule.forRoot(),
+    HttpClientModule,
 
   ],
-  providers: [RxFormBuilder],
-  bootstrap: [AppComponent]
+  providers: [RxFormBuilder, BsModalRef, UsuarioService],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

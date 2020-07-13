@@ -22,9 +22,9 @@ export class Pessoa {
       id: new FormControl(),
       nomeCompleto: new FormControl('', [Validators.required]),
       celular: new FormControl('', [Validators.required]),
-      sexo: new FormControl('', [Validators.required]),
-      dataNascimento: new FormControl('', [Validators.required]),
-      // questionario: Questionario.getControl(),
+      sexo: new FormControl(''),
+      dataNascimento: new FormControl(''),
+      questionario: Questionario.getControl(),
 
     });
   }

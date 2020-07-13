@@ -1,6 +1,6 @@
 <p>cadastro de pessoa</p>
 <div class="content">
-    <form [formGroup]="formGroup"   #form="ngForm" (ngSubmit)="formGroup.valid && onSubmit()" appValidarSenha>
+    <form [formGroup]="formGroup"   #form="ngForm" (ngSubmit)="formGroup.valid && salvar && onSubmit() ">
         <div class="form-group" >
             <div formGroupName="pessoa">
                 <label>Nome Completo *</label>
@@ -19,7 +19,7 @@
                   </div>
             </div>
         </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
             <div formGroupName="pessoa">
                 <label>Data de Nascimento *</label>
                 <input type="date" formControlName="dataNascimento" class="form-control"  />
@@ -27,8 +27,8 @@
                     A data de nascimento nao pode ser vazio!
                   </div>
             </div>
-        </div>
-        <div class="form-group" >
+        </div> -->
+        <!-- <div class="form-group" >
             <div class="custom-control custom-checkbox" formGroupName="pessoa" >
             
                 <label *ngFor="let sex of sexos">
@@ -40,7 +40,7 @@
                 O campo sexo não pode ser vazio!
               </div>
             
-        </div>
+        </div> -->
         <div class="form-group">
             <div >
                 <label>Nome de usuario *</label>
@@ -68,6 +68,7 @@
                 <div *ngIf="hasError('password', 'required',['']) && form.submitted" class="alert alert-danger" role="alert">
                     o campo  senha não pode ser vazio!
                 </div>
+              
             </div>
             <div class="form-group">
                 <div >
@@ -85,9 +86,15 @@
                 </div>
                 
             </div>
-        <div class="form-group">
-            <button class="btn btn-primary" >Cadastre-se</button>
+        <div class="form-group" *ngIf="salvar">
+            <button class="btn btn-primary"  data-target="#modal" >Cadastre-se</button>
         </div>
-    
+
+        <div class="form-group" *ngIf="!salvar">
+            <button (click)="openModal()" class="btn btn-success" >Próximo</button>
+        </div>
+        
+        
     </form>
+     
 </div>

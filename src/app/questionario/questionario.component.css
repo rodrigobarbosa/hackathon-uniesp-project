@@ -1,0 +1,19 @@
+.modalCustom2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.contenModalCustom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.contentstep3 {
+    width: 250px;
+    justify-content: center;
+    align-items: center;
+}

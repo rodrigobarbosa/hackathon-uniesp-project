@@ -17,7 +17,6 @@ export class Usuario {
     this.pessoa = new Pessoa();
   }
 
-
   static getControl(): FormGroup {
     return new FormGroup({
       id: new FormControl(),

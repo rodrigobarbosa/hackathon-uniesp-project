@@ -1,22 +1,59 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="">
-  </head>
-  <body>
-    <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
+<div class="modal-header">
+	<h4 class="modal-title pull-left"> {{ title }} </h4>
+	<button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div [formGroup]="formGroup">
+  <div class="modal-body">
+      <div class="form-group" [hidden]="step!==1" >
+        <div >
+            <label>Qual a sua data de nascimento ? </label>
+            <input type="date" formControlName="dataNascimento"  class="form-control"/>
+        </div>
+        <div class="form-group" >
+        <label>Qual o seu sexo ? </label>
+
+          <div class="custom-control custom-checkbox" >
+                <label *ngFor="let sex of sexos">
+                    <input type="radio" [value]="sex" formControlName="sexo" name="sexo">
+                    <span>{{sex}}</span>
+                </label>
+          </div>
+            <!-- <div *ngIf="hasError('sexo', 'required',['pessoa']) && form.submitted"  class="alert alert-danger" role="alert">
+              O campo sexo não pode ser vazio!
+            </div> -->
+            <div class="form-group">
+              <button class="btn btn-primary" (click)="salvar()" [disabled]="!formGroup.valid" >Próximo</button>
+            </div>
+      </div>
+  </div>
+  </div>
+
+  <div  *ngIf="step == 2" [ngClass]="step == 2 ? 'modalCustom2' : 'modal-body'">
+    <label>Você já teve covid? </label>
+    <div class="contenModalCustom">
+      <div class="form-group">
+        <button class="btn btn-primary" (click)="salvar()">Sim</button> 
+      </div> 
+
+      <div class="form-group">
+          <button class="btn btn-danger" >Não</button>
+      </div>
+    </div>  
+  </div>  
 
 
-    <script src="" async defer></script>
-  </body>
-</html>
+  <div  *ngIf="step == 3" [ngClass]="step == 3 ? 'modalCustom3' : 'modal-body'">
+    <label class="contentstep3">Deseja ajudar a salvar vidas, compartilhando essas informações para grupos de pesquisa científica??</label>
+    <div class="contenModalCustom">
+      <div class="form-group">
+        <button class="btn btn-primary" (click)="backToCadastro()" >Sim, eu quero ajudar!</button> 
+      </div> 
+
+      <div class="form-group">
+          <button class="btn btn-danger" >Não, não quero ajudar.</button>
+      </div>
+    </div>  
+  </div>  
+</div>
