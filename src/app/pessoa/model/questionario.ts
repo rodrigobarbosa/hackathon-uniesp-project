@@ -5,7 +5,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 export class  Questionario {
   public id: number;
-  public sintomas: Sintoma;
+  public sintoma: Sintoma;
+  public sintomaS: Sintoma[];
+
   public periodoSintoma: PeriodoSintoma;
   public pessoa: Pessoa;
 
@@ -20,7 +22,7 @@ export class  Questionario {
   static getInicializeControl(questionario: Questionario) {
     return new FormGroup({
       id: new FormControl(questionario.id),
-      sintomas: new FormControl(questionario.sintomas, [Validators.required]),
+      sintomas: new FormControl(questionario.sintoma, [Validators.required]),
       periodoSintoma: new FormControl(questionario.periodoSintoma, [Validators.required]),
     })
   }

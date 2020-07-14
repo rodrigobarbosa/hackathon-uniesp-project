@@ -24,7 +24,7 @@
               O campo sexo não pode ser vazio!
             </div> -->
             <div class="form-group">
-              <button class="btn btn-primary" (click)="salvar()" [disabled]="!formGroup.valid" >Próximo</button>
+              <button class="btn btn-primary" (click)="step=2" [disabled]="!formGroup.valid" >Próximo</button>
             </div>
       </div>
   </div>
@@ -34,11 +34,11 @@
     <label>Você já teve covid? </label>
     <div class="contenModalCustom">
       <div class="form-group">
-        <button class="btn btn-primary" (click)="salvar()">Sim</button> 
+        <button class="btn btn-primary" (click)="step=3">Sim</button> 
       </div> 
 
       <div class="form-group">
-          <button class="btn btn-danger" >Não</button>
+          <button class="btn btn-danger" (click)="step=4">Não</button>
       </div>
     </div>  
   </div>  
@@ -48,12 +48,24 @@
     <label class="contentstep3">Deseja ajudar a salvar vidas, compartilhando essas informações para grupos de pesquisa científica??</label>
     <div class="contenModalCustom">
       <div class="form-group">
-        <button class="btn btn-primary" (click)="backToCadastro()" >Sim, eu quero ajudar!</button> 
+        <button class="btn btn-primary" (click)="backToCadastro(true, true)" >Sim, eu quero ajudar!</button> 
       </div> 
 
       <div class="form-group">
-          <button class="btn btn-danger" >Não, não quero ajudar.</button>
+          <button class="btn btn-danger" (click)="backToCadastro(false, false)">Não, não quero ajudar.</button>
       </div>
     </div>  
-  </div>  
+  </div>
+  <div  *ngIf="step == 4" [ngClass]="step == 4 ? 'modalCustom4' : 'modal-body'">
+    <label>Como você está se sentindo hoje? </label>
+    <div class="contenModalCustom">
+      <div class="form-group">
+        <button class="btn btn-primary" (click)="backToCadastro(true, false)">Bem</button> 
+      </div> 
+
+      <div class="form-group">
+          <button class="btn btn-danger" (click)="backToCadastro(false,false)">Mal</button>
+      </div>
+    </div>  
+  </div>    
 </div>

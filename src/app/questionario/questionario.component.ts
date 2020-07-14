@@ -3,6 +3,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Sexo } from '../pessoa/model/sexo';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Questionario } from '../pessoa/model/questionario';
+import { AuxilioCadastro } from '../pessoa/model/auxilio-cadastro';
 
 
 @Component({
@@ -44,11 +45,20 @@ export class QuestionarioComponent implements OnInit {
     // this.modalRef.hide();
   }
 
-  // Emitindo o evento para o componente de cadastro de pessoa
-  backToCadastro(){
-    this.passoFinal = true
+  // Emitindo o evento para o componente de cadastro de usuário
+  /**
+   * 
+   * @param passoFinal indica se o form está apto para ir para o passo final , ou seja, 
+   * que ja possa salvar na base
+   */
+  backToCadastro(passoFinal : boolean, auxilarPesquisa: boolean){
+    const auxilioCadastro : AuxilioCadastro = new AuxilioCadastro();
+    auxilioCadastro.passoFinal = passoFinal
+    auxilioCadastro.flagInteresseAuxilioPesuisas = auxilarPesquisa;
+
     this.event.emit(this.formGroup);
-    this.event.emit(this.passoFinal);
+    this.event.emit(auxilioCadastro);
+    this.modalRef.hide();
   }
 
   triggerEvent() {

@@ -6,6 +6,8 @@ import { BsModalRef } from "ngx-bootstrap/modal/bs-modal-ref.service";
 import { BsModalService } from "ngx-bootstrap/modal";
 import { QuestionarioComponent } from '../../questionario/questionario.component';
 import { UsuarioService } from '../servico/usuario.service';
+import { AuxilioCadastro } from '../model/auxilio-cadastro';
+import { Router } from '@angular/router';
 
 
 
@@ -28,7 +30,8 @@ export class CadastroComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private modalService: BsModalService,
-              private usuarioService: UsuarioService) { }
+              private usuarioService: UsuarioService,
+              private route: Router) { }
 
   ngOnInit(): void {
     this.formGroup = Usuario.getControl();
@@ -97,30 +100,34 @@ export class CadastroComponent implements OnInit {
    
   }
   private salvarUsuario() {
-    this.modalRef.content.event.subscribe((questionarioFormGroupModal: any) => {
+    this.modalRef.content.event.subscribe((questionarioModal: any) => {
       debugger;
 
-      if (questionarioFormGroupModal instanceof FormGroup) {
-        const questionarioFormGroup = questionarioFormGroupModal as FormGroup;
+      if (questionarioModal instanceof FormGroup) {
+        const questionarioFormGroup = questionarioModal as FormGroup;
         this.setValues(questionarioFormGroup);
 
       }
 
-      if(new Boolean(questionarioFormGroupModal) instanceof Boolean){
-        const salvarUsuario = questionarioFormGroupModal as Boolean;
-        this.salvar =  salvarUsuario.valueOf()
+      if(questionarioModal instanceof AuxilioCadastro){
+        const auxilioCadastro = questionarioModal as AuxilioCadastro;
+        this.salvar =  auxilioCadastro.passoFinal;
+        this.formGroup.controls.pessoa.get("flagInteresseAuxilioPesquisa").setValue(auxilioCadastro.flagInteresseAuxilioPesuisas);
+
       }
-
-      // if(this.salvar){
-      //   this.usuarioService.salvar(this.formGroup.value).subscribe(()=> {
-
-      //   })
-      // }
+      debugger;
+      if(this.salvar){
+        this.usuarioService.salvar(this.formGroup.value).subscribe(()=> {
+          console.log("Usuario salvo")
+        }, (error) => {
+          console.log("Algo deu errado", error)
+        })  
+      }
     });
   }
 
   /**
-   * 
+   * Adicionando os controladores do modal no formGroup de pessoa
    * @param formGroup 
    */
   setValues(formGroupQuestionario: FormGroup){
@@ -129,7 +136,7 @@ export class CadastroComponent implements OnInit {
 
     formGroupQuestionario.removeControl('sexo')
     formGroupQuestionario.removeControl('dataNascimento')
-    this.formGroup.controls.pessoa.get("questionario").setValue(formGroupQuestionario.controls)
+    // this.formGroup.controls.pessoa.get("questionario").setValue(formGroupQuestionario.controls)
   }
 
 

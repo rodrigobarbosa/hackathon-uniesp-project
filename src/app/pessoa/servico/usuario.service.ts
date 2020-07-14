@@ -9,6 +9,6 @@ import { Usuario } from '../../usuario/model/usuario';
 export class UsuarioService extends ServicoBasico<Usuario>{
 
   constructor(private httpClient : HttpClient) {
-    super(httpClient, "/usuario");
+    super(httpClient, "usuario");
   }
 }

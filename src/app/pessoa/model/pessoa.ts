@@ -10,6 +10,7 @@ export class Pessoa {
   public sexo: Sexo;
   public dataNascimento: Date;
   public questionario: Questionario;
+  public questoinario: Questionario[];
   public flagInteresseAuxilioPesquisa: boolean;
 
   constructor(){
@@ -24,7 +25,8 @@ export class Pessoa {
       celular: new FormControl('', [Validators.required]),
       sexo: new FormControl(''),
       dataNascimento: new FormControl(''),
-      questionario: Questionario.getControl(),
+      // questionario: Questionario.getControl(),
+      flagInteresseAuxilioPesquisa: new FormControl('')
 
     });
   }
